@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Universe Has Rules — for Sir Ahsan</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,200;0,9..144,300;0,9..144,400;1,9..144,300&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#05070d;--ink:#ece9e1;--dim:#98a0b3;--gold:#e3b868;--blue:#7fb2ff;--line:rgba(236,233,225,.13);color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.05rem/1.65 "Instrument Sans",system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+h1,h2,.eq,.who,.why p,.bey li,.app p{font-family:Fraunces,Georgia,serif;font-weight:300;margin:0}
+canvas{display:block;width:100%;height:100%}
+.hero,.fin{position:relative;height:100vh;height:100svh;min-height:500px;overflow:hidden}
+.hero canvas{position:absolute;inset:0;touch-action:pan-y}
+.tx{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:0 6vw;pointer-events:none}
+h1{font-size:clamp(2.1rem,min(9vw,15vh),6.8rem);line-height:1.04;letter-spacing:.07em;text-shadow:0 0 40px var(--bg)}
+.who{margin-top:2rem;font-size:clamp(1.3rem,3.2vw,2rem);font-weight:400}
+.who span{display:block;color:var(--gold);font-size:.62em;font-style:italic;font-weight:300}
+.sub{max-width:34ch;color:var(--dim);font-style:italic;margin:1.2rem 0 0}
+.flow{position:absolute;bottom:max(1.4rem,env(safe-area-inset-bottom,0px));left:0;right:0;text-align:center;color:var(--dim);font-size:.85rem;padding:0 4vw;margin:0;pointer-events:none}
+.hero .tx>*,.flow{opacity:0;animation:rise 2.2s forwards}
+.tx h1{animation-delay:.3s}.who{animation-delay:1.1s!important}.sub{animation-delay:1.8s!important}.flow{animation-delay:2.6s}
+@keyframes rise{from{opacity:0;filter:blur(8px)}to{opacity:1;filter:none}}
+.sec{padding-top:14vh}
+.cp{width:min(680px,100% - 12vw);margin:0 auto 2.2rem}
+h2{font-size:clamp(2.2rem,6vw,4rem)}
+.cp p{color:var(--dim);margin:1rem 0}
+.eq{color:var(--gold);font-style:italic;font-size:1.35rem}
+.stage{position:relative;height:min(62vh,560px);min-height:320px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);touch-action:none;cursor:crosshair;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+@supports (height:1svh){.stage{height:min(62svh,560px)}}
+.stage canvas{position:absolute;inset:0;touch-action:none}
+.note{margin:.9rem auto 0;font-size:.86rem;color:var(--dim)}
+.ctl{display:flex;flex-wrap:wrap;gap:.8rem 1.6rem;align-items:center;margin-top:.8rem}
+.ctl label{display:flex;gap:.6rem;align-items:center}
+input[type=range]{accent-color:var(--gold);width:min(150px,38vw)}
+button{font:inherit;font-size:.9rem;color:var(--ink);background:none;border:1px solid var(--gold);padding:.55rem 1.1rem;min-height:44px;cursor:pointer}
+button:focus-visible,input:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+.why{min-height:100vh;min-height:100svh;display:grid;place-content:center;text-align:center;padding:12vh 8vw;gap:2.2rem}
+.why h2{font-size:clamp(5rem,26vw,16rem);font-weight:200;letter-spacing:.04em;line-height:.9}
+.why p{font-size:clamp(1.25rem,3.4vw,2.1rem);max-width:26ch;margin:0 auto}
+.why>*{opacity:0;transition:opacity 2.6s}
+.why.in>*{opacity:1}.why.in>:nth-child(2){transition-delay:2s}.why.in>:nth-child(3){transition-delay:4.6s}
+.bey ul{list-style:none;margin:0 auto;padding:0;width:min(900px,100% - 12vw)}
+.bey li{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem 1.2rem;padding:1.3rem 0;border-top:1px solid var(--line)}
+.bey li:last-child{border-bottom:1px solid var(--line)}
+.bey b{font-weight:300;color:var(--dim);font-size:clamp(1.1rem,3vw,1.6rem);min-width:6em}
+.bey i{width:clamp(30px,8vw,90px);height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform 1.6s}
+.bey ul.in i{transform:none}.bey li:nth-child(2) i{transition-delay:.4s}.bey li:nth-child(3) i{transition-delay:.8s}.bey li:nth-child(4) i{transition-delay:1.2s}
+.bey span{font-size:clamp(1.6rem,5.2vw,3.2rem)}
+.app{padding:18vh 0 12vh}
+.app p{font-size:clamp(1.5rem,4vw,2.6rem);line-height:1.35;width:min(24em,100% - 12vw);margin:0 auto}
+.fin canvas{position:absolute;inset:0}
+.fin .tx{justify-content:flex-end;padding-bottom:max(12vh,3rem);opacity:0;transition:opacity 4s}
+.fin.go .tx{opacity:1}
+.fin h2{font-size:clamp(2.4rem,9vw,6rem);letter-spacing:.06em;text-shadow:0 0 30px var(--bg)}
+.fin p{margin:1rem 0 0;color:var(--gold);font-size:clamp(1rem,2.4vw,1.4rem)}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style></head><body>
+
+<section class="hero"><canvas id="hero" role="img" aria-label="A grid of space bending around a moving mass"></canvas>
+<div class="tx"><h1>THE UNIVERSE<br>HAS RULES</h1><p class="who">Sir Ahsan<span>Physics</span></p><p class="sub">“You didn’t just teach us physics. You taught us to ask why.”</p></div>
+<p class="flow">Move your cursor, or touch and drag.<br>Observation → Question → Rule → Understanding</p></section>
+
+<section class="sec"><div class="cp"><h2>Motion</h2><p>Every rule starts with watching something move. Pull back and release: the path curves because the velocity keeps changing, and the velocity changes because of acceleration.</p><div class="eq">v = v₀ + at &nbsp;&nbsp; x = x₀ + v₀t + ½at²</div></div>
+<div class="stage"><canvas id="motion" role="img" aria-label="A launched particle with velocity and acceleration vectors"></canvas></div>
+<p class="cp note">Drag back from the launch point, then release. Gold arrow: velocity. Blue arrow: acceleration (constant, no air resistance). Dots mark equal time intervals. Arrow lengths are scaled for clarity.</p></section>
+
+<section class="sec"><div class="cp"><h2>Force</h2><p>A force can’t be seen, only what it does to motion. A steady stream of particles passes an invisible source. Move it and watch the paths change.</p><div class="eq">a = F / m</div></div>
+<div class="stage"><canvas id="force" role="img" aria-label="Particles deflected by an invisible force source"></canvas></div>
+<div class="cp note">Touch or move inside the frame to place the source. An illustrative field, not a precise simulation.<div class="ctl"><button id="flip">Source attracts — switch to repel</button></div></div></section>
+
+<section class="sec"><div class="cp"><h2>Waves</h2><p>Where two waves meet, they add. Crest on crest grows taller; crest on trough cancels. Drag the sources and change the wavelength to see the pattern rearrange.</p><div class="eq">y = A sin(kr − ωt) &nbsp;&nbsp; y = y₁ + y₂</div></div>
+<div class="stage"><canvas id="waves" role="img" aria-label="Interference of two circular waves"></canvas></div>
+<div class="cp note">Blue: crests. Gold: troughs. The wave speed stays fixed; k = 2π/λ.<div class="ctl"><label>Wavelength <input id="lam" type="range" min="30" max="130" value="70"></label><label>Amplitude <input id="amp" type="range" min="0.4" max="1.6" step="0.01" value="1"></label></div></div></section>
+
+<section class="sec"><div class="cp"><h2>Gravity</h2><p>Mass changes how everything nearby moves. These bodies follow Newton’s law of gravitation around the central mass. Drag the mass and the orbits answer.</p><div class="eq">a = GM / r²</div></div>
+<div class="stage"><canvas id="gravity" role="img" aria-label="Bodies orbiting a central mass above a warped grid"></canvas></div>
+<div class="cp note">The bent grid is the familiar rubber-sheet analogy, an artistic picture. It is not a General Relativity calculation.<div class="ctl"><label>Mass <input id="mass" type="range" min="0.4" max="1.6" step="0.01" value="1"></label></div></div></section>
+
+<section class="why" id="why"><h2>WHY?</h2><p>The most important part of physics isn’t memorizing the equation.</p><p>It’s understanding why the equation works.</p></section>
+
+<section class="bey sec"><div class="cp"><h2>Beyond the syllabus</h2></div>
+<ul id="bey"><li><b>Physics</b><i></i><span>Curiosity</span></li><li><b>Equations</b><i></i><span>Understanding</span></li><li><b>Questions</b><i></i><span>Discovery</span></li><li><b>Observation</b><i></i><span>Knowledge</span></li></ul></section>
+
+<section class="app"><p>Every equation has a reason behind it. Thank you for teaching us to look beyond the formula, and to search for that reason.</p></section>
+
+<section class="fin" id="finS"><canvas id="fin" role="img" aria-label="A slow zoom out from a small orbiting system to a galaxy and beyond"></canvas>
+<div class="tx"><h2>THANK YOU, SIR.</h2><p>Happy Teachers’ Day, Sir Ahsan.</p></div></section>
+
+<script>
+(()=>{
+const TAU=Math.PI*2,cl=(v,a,b)=>Math.max(a,Math.min(b,v)),rd=(a,b)=>a+Math.random()*(b-a),$=i=>document.getElementById(i),mods=[];
+function stage(id,init){
+ const c=$(id),x=c.getContext('2d'),m={c,x,w:0,h:0,vis:false,p:{x:0,y:0,down:false,in:false}};
+ const rs=()=>{const d=Math.min(devicePixelRatio||1,2),r=c.getBoundingClientRect();if(!r.width)return;m.w=r.width;m.h=r.height;c.width=Math.round(r.width*d);c.height=Math.round(r.height*d);x.setTransform(d,0,0,d,0,0);m.rs&&m.rs()};
+ const pt=e=>{const r=c.getBoundingClientRect();m.p.x=e.clientX-r.left;m.p.y=e.clientY-r.top};
+ c.addEventListener('pointerdown',e=>{pt(e);m.p.down=m.p.in=true;try{c.setPointerCapture(e.pointerId)}catch(_){}m.dn&&m.dn()});
+ c.addEventListener('pointermove',e=>{pt(e);m.p.in=true;m.mv&&m.mv()});
+ const up=e=>{const was=m.p.down;m.p.down=false;if(e.pointerType!=='mouse'||e.type==='pointerleave')m.p.in=false;if(was&&m.up)m.up()};
+ ['pointerup','pointercancel','pointerleave'].forEach(n=>c.addEventListener(n,up));
+ init(m);new ResizeObserver(rs).observe(c);
+ new IntersectionObserver(e=>m.vis=e[0].isIntersecting,{rootMargin:'120px'}).observe(c);
+ rs();mods.push(m);return m}
+let last=performance.now();
+const loop=t=>{const dt=Math.min((t-last)/1000,.033);last=t;for(const m of mods)if(m.vis&&m.w&&m.draw)m.draw(dt,t/1000);requestAnimationFrame(loop)};
+requestAnimationFrame(loop);
+
+function warp(x,w,h,mx,my,f,step){
+ const sub=8;let qx,qy;
+ const q=(px,py)=>{const dx=mx-px,dy=my-py,k=f(Math.hypot(dx,dy));qx=px+dx*k;qy=py+dy*k};
+ x.beginPath();
+ for(let gy=0;gy<=h+step;gy+=step)for(let gx=0;gx<=w+sub;gx+=sub){q(gx,gy);gx?x.lineTo(qx,qy):x.moveTo(qx,qy)}
+ for(let gx=0;gx<=w+step;gx+=step)for(let gy=0;gy<=h+sub;gy+=sub){q(gx,gy);gy?x.lineTo(qx,qy):x.moveTo(qx,qy)}
+ x.stroke()}
+function arrow(x,x1,y1,x2,y2,c,l){
+ x.strokeStyle=x.fillStyle=c;x.lineWidth=2;x.beginPath();x.moveTo(x1,y1);x.lineTo(x2,y2);x.stroke();
+ const a=Math.atan2(y2-y1,x2-x1);x.beginPath();x.moveTo(x2,y2);x.lineTo(x2-9*Math.cos(a-.4),y2-9*Math.sin(a-.4));x.lineTo(x2-9*Math.cos(a+.4),y2-9*Math.sin(a+.4));x.closePath();x.fill();
+ x.font='italic 17px Fraunces,Georgia,serif';x.fillText(l,x2+(x2>x1?8:-18),y2+(y2>y1?16:-6))}
+const glow=(x,px,py,r,c)=>{const g=x.createRadialGradient(px,py,0,px,py,r);g.addColorStop(0,c);g.addColorStop(1,'rgba(227,184,104,0)');x.fillStyle=g;x.beginPath();x.arc(px,py,r,0,TAU);x.fill()};
+
+stage('hero',m=>{
+ const x=m.x,M={x:0,y:0,i:0},P=[],S=Array.from({length:90},()=>({x:Math.random(),y:Math.random(),p:rd(0,TAU),s:rd(.6,1.4)}));
+ m.rs=()=>{if(!M.i){M.x=m.w/2;M.y=m.h/2;M.i=1}if(!P.length)for(let i=0;i<180;i++)P.push({x:rd(0,m.w),y:rd(0,m.h),vx:rd(-14,14),vy:rd(-14,14)})};
+ m.draw=(dt,t)=>{
+  const w=m.w,h=m.h,p=m.p,tx=p.in?p.x:w*(.5+.26*Math.sin(t*.23)),ty=p.in?p.y:h*(.52+.18*Math.sin(t*.31+1)),e=Math.min(1,dt*(p.in?7:1.5));
+  M.x+=(tx-M.x)*e;M.y+=(ty-M.y)*e;x.clearRect(0,0,w,h);
+  for(const s of S){x.fillStyle=`rgba(236,233,225,${.18+.22*Math.sin(t*.8+s.p)})`;x.fillRect(s.x*w,s.y*h,s.s,s.s)}
+  const sg=Math.max(120,Math.min(w,h)*.2);x.strokeStyle='rgba(127,178,255,.17)';x.lineWidth=1;
+  warp(x,w,h,M.x,M.y,r=>.6*Math.exp(-r*r/(2*sg*sg)),38);
+  glow(x,M.x,M.y,sg*.7,'rgba(227,184,104,.2)');
+  const K=6e5*(Math.min(w,h)/700)**3+2e5;x.beginPath();x.strokeStyle='rgba(236,233,225,.5)';x.lineWidth=1.2;
+  for(const q of P){const dx=M.x-q.x,dy=M.y-q.y,r2=dx*dx+dy*dy+5000,r=Math.sqrt(r2),f=K/r2/r;
+   q.vx=(q.vx+dx*f*dt)*(1-.15*dt);q.vy=(q.vy+dy*f*dt)*(1-.15*dt);const s=Math.hypot(q.vx,q.vy);if(s>340){q.vx*=340/s;q.vy*=340/s}
+   q.x+=q.vx*dt;q.y+=q.vy*dt;if(q.x<0)q.x+=w;if(q.x>w)q.x-=w;if(q.y<0)q.y+=h;if(q.y>h)q.y-=h;
+   x.moveTo(q.x,q.y);x.lineTo(q.x-q.vx*.05,q.y-q.vy*.05)}
+  x.stroke()}});
+
+stage('motion',m=>{
+ const x=m.x;let L={x:0,y:0},gy=0,g=600,v0={x:0,y:0},auto=true,aim=null,b=null,rest=null,tr=[],acc=0,wait=0;
+ const launch=()=>{b={x:L.x,y:L.y,vx:auto?m.w*.4:v0.x,vy:auto?-m.h*1.2:v0.y};rest=null;tr=[];acc=0};
+ m.rs=()=>{L={x:m.w*.14,y:m.h*.72};gy=m.h*.86;g=m.h*1.6;launch()};
+ m.dn=()=>{aim={x:m.p.x,y:m.p.y};b=null;rest=null;tr=[]};
+ m.mv=()=>{if(aim){aim.x=m.p.x;aim.y=m.p.y}};
+ m.up=()=>{if(!aim)return;let vx=(L.x-aim.x)*5,vy=(L.y-aim.y)*5;aim=null;const s=Math.hypot(vx,vy),mx=m.h*2.2;
+  if(s<70){wait=.2;return}if(s>mx){vx*=mx/s;vy*=mx/s}v0={x:vx,y:vy};auto=false;launch()};
+ m.draw=dt=>{
+  x.clearRect(0,0,m.w,m.h);x.strokeStyle='rgba(236,233,225,.25)';x.lineWidth=1;x.beginPath();x.moveTo(0,gy+.5);x.lineTo(m.w,gy+.5);x.stroke();
+  x.strokeStyle='rgba(236,233,225,.35)';x.beginPath();x.arc(L.x,L.y,12,0,TAU);x.stroke();
+  if(!b&&!aim){wait-=dt;if(wait<=0)launch()}
+  if(aim){const vx=(L.x-aim.x)*5,vy=(L.y-aim.y)*5;x.fillStyle='rgba(227,184,104,.6)';
+   for(let t=0;t<4;t+=.07){const px=L.x+vx*t,py=L.y+vy*t+.5*g*t*t;if(py>gy||px>m.w)break;x.fillRect(px-1.5,py-1.5,3,3)}
+   x.strokeStyle='rgba(227,184,104,.5)';x.beginPath();x.moveTo(L.x,L.y);x.lineTo(aim.x,aim.y);x.stroke();x.fillStyle='#ece9e1';x.beginPath();x.arc(aim.x,aim.y,6,0,TAU);x.fill()}
+  if(b){b.vy+=g*dt;b.x+=b.vx*dt;b.y+=b.vy*dt;acc+=dt;if(acc>=.1){acc-=.1;tr.push({x:b.x,y:b.y})}
+   if(b.y>=gy||b.x>m.w+30){rest={x:b.x,y:Math.min(b.y,gy)};b=null;wait=1.3}}
+  x.fillStyle='rgba(236,233,225,.5)';for(const q of tr){x.beginPath();x.arc(q.x,q.y,2.5,0,TAU);x.fill()}
+  const o=b||rest;if(o){x.fillStyle='#ece9e1';x.beginPath();x.arc(o.x,o.y,6.5,0,TAU);x.fill()}
+  if(b){const k=.14;x.setLineDash([4,5]);x.strokeStyle='rgba(227,184,104,.4)';x.lineWidth=1;x.beginPath();x.moveTo(b.x,b.y);x.lineTo(b.x+b.vx*k,b.y);x.moveTo(b.x,b.y);x.lineTo(b.x,b.y+b.vy*k);x.stroke();x.setLineDash([]);
+   arrow(x,b.x,b.y,b.x+b.vx*k,b.y+b.vy*k,'#e3b868','v');arrow(x,b.x,b.y,b.x,b.y+g*k,'#7fb2ff','a')}}});
+
+stage('force',m=>{
+ const x=m.x,S={x:0,y:0,i:0},P=[];let sg=1;
+ const k=()=>Math.min(m.w,m.h)/450,sp=()=>Math.max(m.w,m.h)*.2;
+ const spawn=(q,init)=>{q.x=init?rd(0,m.w):-10;q.y=rd(0,m.h);q.vx=sp()*rd(.9,1.1);q.vy=0;q.px=q.x;q.py=q.y;q.l=rd(5,10)};
+ m.rs=()=>{if(!S.i){S.x=m.w*.55;S.y=m.h*.5;S.i=1}P.length=0;for(let i=0;i<280;i++){const q={};spawn(q,1);P.push(q)}};
+ $('flip').onclick=e=>{sg=-sg;e.currentTarget.textContent=sg>0?'Source attracts — switch to repel':'Source repels — switch to attract'};
+ const seg=(a,c)=>{x.strokeStyle=c;x.beginPath();for(const q of a){x.moveTo(q.px,q.py);x.lineTo(q.x,q.y)}x.stroke()};
+ m.draw=(dt,t)=>{
+  const w=m.w,h=m.h,p=m.p,tx=p.in?p.x:w*.55+Math.sin(t*.4)*w*.14,ty=p.in?p.y:h*.5+Math.cos(t*.53)*h*.22,e=Math.min(1,dt*(p.in?9:2));
+  S.x+=(tx-S.x)*e;S.y+=(ty-S.y)*e;x.fillStyle='rgba(5,7,13,.2)';x.fillRect(0,0,w,h);
+  const kk=k(),K=2e6*kk**3,v=sp(),A=[],B=[];x.lineWidth=1.5;
+  for(const q of P){const dx=S.x-q.x,dy=S.y-q.y,r2=dx*dx+dy*dy+900*kk*kk,r=Math.sqrt(r2),f=sg*K/r2/r;
+   q.vx+=dx*f*dt;q.vy+=dy*f*dt;const s=Math.hypot(q.vx,q.vy);if(s>v*4){q.vx*=v*4/s;q.vy*=v*4/s}
+   q.px=q.x;q.py=q.y;q.x+=q.vx*dt;q.y+=q.vy*dt;q.l-=dt;
+   if(q.x>w+20||q.x<-20||q.y<-20||q.y>h+20||q.l<0||r<7){spawn(q,0);continue}
+   (s>v*1.3?A:B).push(q)}
+  seg(A,'rgba(227,184,104,.85)');seg(B,'rgba(127,178,255,.7)');
+  for(let i=0;i<3;i++){let u=(t*.5+i/3)%1;if(sg>0)u=1-u;x.strokeStyle=`rgba(227,184,104,${.45*Math.sin(Math.PI*u)})`;x.lineWidth=1;x.beginPath();x.arc(S.x,S.y,14+u*110*kk,0,TAU);x.stroke()}
+  x.fillStyle='#e3b868';x.beginPath();x.arc(S.x,S.y,5,0,TAU);x.fill()}});
+
+stage('waves',m=>{
+ const x=m.x,o=document.createElement('canvas'),ox=o.getContext('2d'),S=[{x:.36,y:.5},{x:.64,y:.5}];let cw,ch,img,C=4,ph=0,sel=-1;
+ m.rs=()=>{C=m.w<600?3:4;cw=Math.ceil(m.w/C);ch=Math.ceil(m.h/C);o.width=cw;o.height=ch;img=ox.createImageData(cw,ch)};
+ const mv=m.mv=()=>{if(sel>=0&&m.p.down){S[sel].x=cl(m.p.x/m.w,.03,.97);S[sel].y=cl(m.p.y/m.h,.05,.95)}};
+ m.dn=()=>{let bd=1e9;S.forEach((s,i)=>{const d=Math.hypot(s.x*m.w-m.p.x,s.y*m.h-m.p.y);if(d<bd){bd=d;sel=i}});mv()};
+ m.up=()=>{sel=-1};
+ m.draw=dt=>{
+  const lam=+$('lam').value,A=+$('amp').value,k=TAU/lam,d=img.data;ph+=k*90*dt;
+  const ax=S[0].x*m.w,ay=S[0].y*m.h,bx=S[1].x*m.w,by=S[1].y*m.h;let n=0;
+  for(let j=0;j<ch;j++){const py=(j+.5)*C;for(let i=0;i<cw;i++){const px=(i+.5)*C,r1=Math.hypot(px-ax,py-ay),r2=Math.hypot(px-bx,py-by),
+   y=(Math.sin(k*r1-ph)/Math.sqrt(1+r1/60)+Math.sin(k*r2-ph)/Math.sqrt(1+r2/60))*A*.6,u=Math.min(1,Math.abs(y));
+   if(y>0){d[n]=7+133*u;d[n+1]=10+170*u;d[n+2]=20+235*u}else{d[n]=7+160*u;d[n+1]=10+112*u;d[n+2]=20+30*u}
+   d[n+3]=255;n+=4}}
+  ox.putImageData(img,0,0);x.drawImage(o,0,0,m.w,m.h);
+  for(const s of S){x.strokeStyle='rgba(236,233,225,.85)';x.lineWidth=1.5;x.beginPath();x.arc(s.x*m.w,s.y*m.h,10,0,TAU);x.stroke();x.fillStyle='#e3b868';x.beginPath();x.arc(s.x*m.w,s.y*m.h,3.5,0,TAU);x.fill()}}});
+
+stage('gravity',m=>{
+ const x=m.x,M={x:0,y:0,i:0};let B=[],sc=1;
+ const GM=()=>4e6*sc**3*(+$('mass').value);
+ const sp=b=>{const r=rd(.17,.46)*Math.min(m.w,m.h),a=rd(0,TAU),v=Math.sqrt(GM()/r)*rd(.78,1.04);b.x=M.x+r*Math.cos(a);b.y=M.y+r*Math.sin(a);b.vx=-Math.sin(a)*v;b.vy=Math.cos(a)*v;b.t=[]};
+ m.rs=()=>{sc=Math.min(m.w,m.h)/400;if(!M.i){M.x=m.w/2;M.y=m.h/2;M.i=1}B=Array.from({length:70},()=>{const b={};sp(b);return b})};
+ m.draw=dt=>{
+  const w=m.w,h=m.h,p=m.p,ms=+$('mass').value,gm=GM();
+  if(p.down){const e=Math.min(1,dt*10);M.x+=(p.x-M.x)*e;M.y+=(p.y-M.y)*e}
+  x.clearRect(0,0,w,h);x.strokeStyle='rgba(127,178,255,.22)';x.lineWidth=1;
+  warp(x,w,h,M.x,M.y,r=>{const q=r/sc;return Math.min(.88,ms*9000/(q*q+3000))},Math.round(34*Math.max(.8,sc)));
+  const n=4,hs=dt/n;x.beginPath();
+  for(const b of B){for(let s=0;s<n;s++){const dx=M.x-b.x,dy=M.y-b.y,r2=dx*dx+dy*dy+196*sc*sc,iv=gm/(r2*Math.sqrt(r2));b.vx+=dx*iv*hs;b.vy+=dy*iv*hs;b.x+=b.vx*hs;b.y+=b.vy*hs}
+   b.t.push(b.x,b.y);if(b.t.length>44)b.t.splice(0,2);
+   const d=Math.hypot(b.x-M.x,b.y-M.y);if(d<9||d>Math.max(w,h)*2){sp(b);continue}
+   x.moveTo(b.t[0],b.t[1]);for(let i=2;i<b.t.length;i+=2)x.lineTo(b.t[i],b.t[i+1])}
+  x.strokeStyle='rgba(236,233,225,.45)';x.stroke();x.fillStyle='#ece9e1';for(const b of B)x.fillRect(b.x-1.5,b.y-1.5,3,3);
+  glow(x,M.x,M.y,50*ms*sc,'rgba(227,184,104,.55)');x.fillStyle='#f3d79a';x.beginPath();x.arc(M.x,M.y,(5+3*ms)*Math.max(.8,sc),0,TAU);x.fill()}});
+
+const finS=$('finS');
+stage('fin',m=>{
+ const x=m.x;let z=0,on=false;
+ const G=Array.from({length:750},(_,i)=>{const r=Math.sqrt(Math.random());return{r,a:r*5.2+(i%2)*Math.PI+(Math.random()+Math.random()-1)*.5,s:rd(.7,1.6)}});
+ const U=Array.from({length:110},()=>({r:Math.sqrt(Math.random()),a:rd(0,TAU),s:rd(.8,1.8)}));
+ const ST=Array.from({length:140},()=>({x:Math.random(),y:Math.random(),p:rd(0,TAU)}));
+ new IntersectionObserver(e=>on=e[0].isIntersecting,{threshold:.55}).observe(finS);
+ new IntersectionObserver(e=>{if(!e[0].isIntersecting){z=0;finS.classList.remove('go')}}).observe(finS);
+ const ring=(r,c)=>{x.strokeStyle=c;x.beginPath();x.arc(0,0,r,0,TAU);x.stroke()};
+ const dot=(a,r,s,c)=>{x.fillStyle=c;x.beginPath();x.arc(r*Math.cos(a),r*Math.sin(a),s,0,TAU);x.fill()};
+ m.draw=(dt,t)=>{
+  if(on)z=Math.min(1,z+dt/20);if(z>.6)finS.classList.add('go');
+  const w=m.w,h=m.h,cx=w/2,cy=h*.38,e=3.2*z;x.clearRect(0,0,w,h);
+  for(const s of ST){x.fillStyle=`rgba(236,233,225,${.15+.15*Math.sin(t+s.p)})`;x.fillRect(s.x*w,s.y*h,1.2,1.2)}
+  for(let i=0;i<5;i++){
+   const sc=70*Math.pow(7,i-e),al=cl(Math.min(Math.log(sc/5),Math.log(4000/sc))/Math.log(3),0,1);if(!al)continue;
+   const u=1/sc,W='rgba(236,233,225,.5)',B='rgba(127,178,255,.9)',Y='#e3b868';
+   x.save();x.translate(cx,cy);x.scale(sc,sc);x.globalAlpha=al;x.lineWidth=1.2*u;
+   if(i==0){ring(.7,'rgba(236,233,225,.25)');ring(.38,'rgba(236,233,225,.25)');dot(t*1.4,.7,4*u,'#ece9e1');dot(t*2.6+2,.38,3*u,Y);dot(0,0,5*u,Y)}
+   else if(i==1){for(const r of[.22,.5]){ring(r,'rgba(127,178,255,.25)');dot(t*.6*Math.pow(.22/r,1.5)+r*9,r,3.5*u,W)}dot(0,0,3*u,B)}
+   else if(i==2){for(const r of[.25,.42,.62,.85]){ring(r,'rgba(236,233,225,.18)');dot(t*.4*Math.pow(.25/r,1.5)+r*7,r,3*u,B)}glow(x,0,0,.07,'rgba(227,184,104,.8)')}
+   else if(i==3){x.fillStyle='rgba(236,233,225,.7)';for(const g of G){const a=g.a+t*.12/(g.r+.3);x.fillRect(g.r*Math.cos(a)-.5*g.s*u,g.r*Math.sin(a)*.6-.5*g.s*u,g.s*u,g.s*u)}glow(x,0,0,.18,'rgba(227,184,104,.55)')}
+   else{x.fillStyle='rgba(236,233,225,.6)';for(const g of U)x.fillRect(g.r*Math.cos(g.a)-g.s*u/2,g.r*Math.sin(g.a)-g.s*u/2,g.s*u,g.s*u)}
+   x.restore()}}});
+
+const once=(el,fn)=>new IntersectionObserver((e,o)=>{if(e[0].isIntersecting){fn(e[0].target);o.disconnect()}},{threshold:.35}).observe(el);
+once($('why'),el=>el.classList.add('in'));once($('bey'),el=>el.classList.add('in'));
+})();
+</script></body></html>
